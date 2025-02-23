@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOTS Voting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #001f3f;
+            color: #f0f8ff;
+            overflow-x: hidden;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            border-radius: 8px;
+            background-color: #003366;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            min-height: 60vh;
+        }
+
+        header {
+            text-align: center;
+            position: relative;
+            color: white;
+            padding: 30px 20px; /* Reduced padding to make header smaller */
+            background-color: #001f3f;
+            min-height: 50vh; /* Reduced height */
+            z-index: 1;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 2s ease-out;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-top: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            animation: fadeIn 3s ease-out;
+        }
+
+        /* Particle animation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: moveParticle 5s infinite, fadeOut 2s ease-out;
+        }
+
+        /* Particle movement in different directions */
+        @keyframes moveParticle {
+            0% {
+                transform: translateY(-100px) translateX(-100px) scale(0.5);
+            }
+            20% {
+                transform: translateY(80px) translateX(150px) scale(1.2);
+            }
+            40% {
+                transform: translateY(-150px) translateX(100px) scale(1);
+            }
+            60% {
+                transform: translateY(200px) translateX(-50px) scale(0.7);
+            }
+            80% {
+                transform: translateY(-50px) translateX(-150px) scale(1.4);
+            }
+            100% {
+                transform: translateY(-100px) translateX(-100px) scale(0.5);
+            }
+        }
+
+        /* Fading out particles more subtly */
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0.1; }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .voting-section h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .voting-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .voting-options label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #001f3f;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .voting-options label:hover {
+            background-color: #00509e;
+        }
+
+        .voting-options input[type="checkbox"] {
+            display: none;
+        }
+
+        .voting-options input[type="checkbox"]:checked + label {
+            background-color: #0096ff;
+        }
+
+        .voting-options img {
+            max-width: 50px;
+            margin-bottom: 10px;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .image-gallery img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-description {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .voting-options label {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            .image-description {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TOTS</h1>
+        <p>Бьюти возвращает легендарный проект - ТОТС 🔥  Мы для вас готовим множество интереснейших ивентов, на подходе первый из них, "команда года". 
+
+            В опросе ниже представлено двадцать два лучших футбольных тик токера за прошлый год. Одиннадцать из них пройдут ✅</p>
+        <div class="particles">
+            <!-- Adding particles with different patterns -->
+            <div class="particle" style="width: 20px; height: 20px; animation-duration: 5s; animation-delay: 0s; top: 10%; left: 20%;"></div>
+            <div class="particle" style="width: 25px; height: 25px; animation-duration: 6s; animation-delay: 1s; top: 40%; left: 60%;"></div>
+            <div class="particle" style="width: 30px; height: 30px; animation-duration: 7s; animation-delay: 2s; top: 70%; left: 30%;"></div>
+            <div class="particle" style="width: 15px; height: 15px; animation-duration: 8s; animation-delay: 3s; top: 20%; left: 80%;"></div>
+            <div class="particle" style="width: 18px; height: 18px; animation-duration: 4s; animation-delay: 0.5s; top: 60%; left: 15%;"></div>
+            <div class="particle" style="width: 35px; height: 35px; animation-duration: 9s; animation-delay: 4s; top: 50%; left: 50%;"></div>
+        </div>
+    </header>
+    <main>
+        <!-- Voting Section -->
+            <section class="voting-section">
+                <h2>Vote for your top 11 options</h2>
+                <div class="voting-options">
+                    <!-- 22 voting options with images -->
+                    <input type="checkbox" id="option1" name="vote" value="option1" class="vote-option">
+                    <label for="option1">
+                        <img src="3.jpg" alt="Option 1">
+                        Zurab
+                    </label>
+            
+                    <input type="checkbox" id="option2" name="vote" value="option2" class="vote-option">
+                    <label for="option2">
+                        <img src="1.png" alt="Option 2">
+                        Marega
+                    </label>
+            
+                    <input type="checkbox" id="option3" name="vote" value="option3" class="vote-option">
+                    <label for="option3">
+                        <img src="4.jpg" alt="Option 3">
+                        Derb
+                    </label>
+            
+                    <input type="checkbox" id="option4" name="vote" value="option4" class="vote-option">
+                    <label for="option4">
+                        <img src="5.jpg" alt="Option 4">
+                        Orest
+                    </label>
+            
+                    <input type="checkbox" id="option5" name="vote" value="option5" class="vote-option">
+                    <label for="option5">
+                        <img src="6.jpg" alt="Option 5">
+                        Feelzips
+                    </label>
+            
+                    <input type="checkbox" id="option6" name="vote" value="option6" class="vote-option">
+                    <label for="option6">
+                        <img src="10.jpg" alt="Option 6">
+                        Pionel
+                    </label>
+            
+                    <input type="checkbox" id="option7" name="vote" value="option7" class="vote-option">
+                    <label for="option7">
+                        <img src="2.jpg" alt="Option 7">
+                        Zere
+                    </label>
+            
+                    <input type="checkbox" id="option8" name="vote" value="option8" class="vote-option">
+                    <label for="option8">
+                        <img src="7.jpg" alt="Option 8">
+                        Mixy
+                    </label>
+            
+                    <input type="checkbox" id="option9" name="vote" value="option9" class="vote-option">
+                    <label for="option9">
+                        <img src="8.jpg" alt="Option 9">
+                        Van
+                    </label>
+            
+                    <input type="checkbox" id="option10" name="vote" value="option10" class="vote-option">
+                    <label for="option10">
+                        <img src="9.jpg" alt="Option 10">
+                        Grealish
+                    </label>
+            
+                    <input type="checkbox" id="option11" name="vote" value="option11" class="vote-option">
+                    <label for="option11">
+                        <img src="11.jpg" alt="Option 11">
+                        Wolver
+                    </label>
+            
+                    <input type="checkbox" id="option12" name="vote" value="option12" class="vote-option">
+                    <label for="option12">
+                        <img src="12.jpg" alt="Option 12">
+                        Just
+                    </label>
+            
+                    <input type="checkbox" id="option13" name="vote" value="option13" class="vote-option">
+                    <label for="option13">
+                        <img src="13.jpg" alt="Option 13">
+                        Renat
+                    </label>
+            
+                    <input type="checkbox" id="option14" name="vote" value="option14" class="vote-option">
+                    <label for="option14">
+                        <img src="14.jpg" alt="Option 14">
+                        Grozniy
+                    </label>
+            
+                    <input type="checkbox" id="option15" name="vote" value="option15" class="vote-option">
+                    <label for="option15">
+                        <img src="15.jpg" alt="Option 15">
+                        Letvik
+                    </label>
+            
+                    <input type="checkbox" id="option16" name="vote" value="option16" class="vote-option">
+                    <label for="option16">
+                        <img src="16.jpg" alt="Option 16">
+                        Zevs
+                    </label>
+            
+                    <input type="checkbox" id="option17" name="vote" value="option17" class="vote-option">
+                    <label for="option17">
+                        <img src="17.jpg" alt="Option 17">
+                        Rama
+                    </label>
+            
+                    <input type="checkbox" id="option18" name="vote" value="option18" class="vote-option">
+                    <label for="option18">
+                        <img src="18.jpg" alt="Option 18">
+                        Ertik
+                    </label>
+            
+                    <input type="checkbox" id="option19" name="vote" value="option19" class="vote-option">
+                    <label for="option19">
+                        <img src="19.jpg" alt="Option 19">
+                        Lostin
+                    </label>
+            
+                    <input type="checkbox" id="option20" name="vote" value="option20" class="vote-option">
+                    <label for="option20">
+                        <img src="20.jpg" alt="Option 20">
+                        Fine
+                    </label>
+            
+                    <input type="checkbox" id="option21" name="vote" value="option21" class="vote-option">
+                    <label for="option21">
+                        <img src="21.jpg" alt="Option 21">
+                        King
+                    </label>
+            
+                    <input type="checkbox" id="option22" name="vote" value="option22" class="vote-option">
+                    <label for="option22">
+                        <img src="22.jpg" alt="Option 22">
+                        Nforse
+                    </label>
+                </div>
+                <p id="vote-error" style="color: red; display: none; text-align: center; margin-top: 10px;">Ты только можешь выбрать не больше 11 кандидатов</p>
+            </section>
+
+        <!-- Image Gallery Section -->
+    </main>
+    <script>
+        const voteOptions = document.querySelectorAll('.vote-option');
+        const voteError = document.getElementById('vote-error');
+
+        voteOptions.forEach(option => {
+            option.addEventListener('change', () => {
+                const selectedCount = Array.from(voteOptions).filter(option => option.checked).length;
+                if (selectedCount > 11) {
+                    option.checked = false;
+                    voteError.style.display = 'block';
+                } else {
+                    voteError.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
